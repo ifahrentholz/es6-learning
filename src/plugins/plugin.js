@@ -1,7 +1,8 @@
-import plugin from '../utils/pluginRegister';
+import pluginRegister from '../utils/pluginRegister';
 
-export function ifLog(options) {
+export function plugin1(options) {
+  console.log(this);
   console.log(options.message || "no msg provided");
 }
 
-plugin("cAlias", ifLog);
+pluginRegister("plugin1", plugin1);

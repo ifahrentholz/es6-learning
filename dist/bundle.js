@@ -56,7 +56,7 @@
 	// and in the DOM module the kebab-case module here.
 	(0, _dom.$)(".test1", {
 	  plugins: {
-	    cAlias: {
+	    plugin1: {
 	      message: "first plugin message."
 	    }
 	  }
@@ -64,7 +64,7 @@
 
 	(0, _dom.$)(".test2", {
 	  plugins: {
-	    cAlias2: {
+	    plugin2: {
 	      message: "second plugin message."
 	    }
 	  }
@@ -190,7 +190,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ifLog = ifLog;
+	exports.plugin1 = plugin1;
 
 	var _pluginRegister = __webpack_require__(4);
 
@@ -198,11 +198,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function ifLog(options) {
+	function plugin1(options) {
+	  console.log(this);
 	  console.log(options.message || "no msg provided");
 	}
 
-	(0, _pluginRegister2.default)("cAlias", ifLog);
+	(0, _pluginRegister2.default)("plugin1", plugin1);
 
 /***/ },
 /* 4 */
@@ -220,11 +221,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var plugin = function plugin(name, init) {
+	var pluginRegister = function pluginRegister(name, init) {
 	  _dom2.default.prototype[name] = init;
 	};
 
-	exports.default = plugin;
+	exports.default = pluginRegister;
 
 /***/ },
 /* 5 */
@@ -235,7 +236,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ifLog2 = ifLog2;
+	exports.plugin2 = plugin2;
 
 	var _pluginRegister = __webpack_require__(4);
 
@@ -243,11 +244,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function ifLog2(options) {
+	function plugin2(options) {
 	  console.log(options.message || "no msg provided");
 	}
 
-	(0, _pluginRegister2.default)("cAlias2", ifLog2);
+	(0, _pluginRegister2.default)("plugin2", plugin2);
 
 /***/ }
 /******/ ]);

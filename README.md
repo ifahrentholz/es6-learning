@@ -6,3 +6,5 @@
 - [x] Build a app with the ability to be extended with custom plugins
 - [ ] Build a class structure with extends
 - [ ] extend this topic list :)
+- [ ] UMD via Webpack
+- [ ] PV NPM (confluence nexus)

@@ -1,12 +1,12 @@
 import {$} from './app/dom';
-import {ifLog} from './plugins/plugin';
-import {ifLog2} from './plugins/plugin2';
+import {plugin1} from './plugins/plugin';
+import {plugin2} from './plugins/plugin2';
 
 // test $ (as custom DOM module)
 // and in the DOM module the kebab-case module here.
 $(".test1", {
   plugins: {
-    cAlias: {
+    plugin1: {
       message: "first plugin message."
     }
   }
@@ -15,7 +15,7 @@ $(".test1", {
 
 $(".test2", {
   plugins: {
-    cAlias2: {
+    plugin2: {
       message: "second plugin message."
     }
   }

@@ -3,8 +3,8 @@
   "description": "Mediaplayer modular and extendable.",
   "main": "src/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
-    "watch": "./node_modules/.bin/webpack -w",
+    "build": "webpack",
+    "watch": "webpack -w",
     "commit": "git cz",
     "test:single": "./node_modules/karma/bin/karma start karma.conf.js",
     "semantic-release": "semantic-release pre && semantic-release post"
