@@ -46,46 +46,32 @@
 
 	'use strict';
 
-	var _dom = __webpack_require__(6);
+	var _dom = __webpack_require__(1);
 
-	var _plugin = __webpack_require__(10);
+	var _plugin = __webpack_require__(3);
+
+	var _plugin2 = __webpack_require__(5);
 
 	// test $ (as custom DOM module)
 	// and in the DOM module the kebab-case module here.
 	(0, _dom.$)(".test1", {
 	  plugins: {
-	    ifLog: {
-	      message: "ifLog with custom message"
+	    cAlias: {
+	      message: "first plugin message."
 	    }
 	  }
 	}).addClass("camelCaseTest");
 
-/***/ },
-/* 1 */,
-/* 2 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var kebabCase = exports.kebabCase = function kebabCase(string) {
-	  function upperToHyphenLower(match) {
-	    if (string.indexOf(match) === 0) {
-	      return match.toLowerCase();
+	(0, _dom.$)(".test2", {
+	  plugins: {
+	    cAlias2: {
+	      message: "second plugin message."
 	    }
-	    return "-" + match.toLowerCase();
 	  }
-
-	  return string.replace(/_/g, "-").replace(/[A-Z]+/g, upperToHyphenLower).toLowerCase();
-	};
+	}).addClass("MyCamelCaseTest_123");
 
 /***/ },
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113,6 +99,7 @@
 
 	    Object.assign(this, this.elements);
 
+	    // call a plugin
 	    if (this.options.plugins) {
 	      (function () {
 	        var plugins = _this.options.plugins;
@@ -175,8 +162,50 @@
 	};
 
 /***/ },
-/* 7 */,
-/* 8 */
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var kebabCase = exports.kebabCase = function kebabCase(string) {
+	  function upperToHyphenLower(match) {
+	    if (string.indexOf(match) === 0) {
+	      return match.toLowerCase();
+	    }
+	    return "-" + match.toLowerCase();
+	  }
+
+	  return string.replace(/_/g, "-").replace(/[A-Z]+/g, upperToHyphenLower).toLowerCase();
+	};
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ifLog = ifLog;
+
+	var _pluginRegister = __webpack_require__(4);
+
+	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ifLog(options) {
+	  console.log(options.message || "no msg provided");
+	}
+
+	(0, _pluginRegister2.default)("cAlias", ifLog);
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -185,7 +214,7 @@
 	  value: true
 	});
 
-	var _dom = __webpack_require__(6);
+	var _dom = __webpack_require__(1);
 
 	var _dom2 = _interopRequireDefault(_dom);
 
@@ -198,23 +227,27 @@
 	exports.default = plugin;
 
 /***/ },
-/* 9 */,
-/* 10 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _pluginRegister = __webpack_require__(8);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ifLog2 = ifLog2;
+
+	var _pluginRegister = __webpack_require__(4);
 
 	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function ifLog(msg) {
-	  console.log(msg || "no msg provided");
+	function ifLog2(options) {
+	  console.log(options.message || "no msg provided");
 	}
 
-	(0, _pluginRegister2.default)("ifLog", ifLog);
+	(0, _pluginRegister2.default)("cAlias2", ifLog2);
 
 /***/ }
 /******/ ]);

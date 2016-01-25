@@ -9,6 +9,7 @@ export default class DOM {
 
     Object.assign(this, this.elements);
 
+    // call a plugin
     if(this.options.plugins) {
       let plugins = this.options.plugins;
 
@@ -20,7 +21,6 @@ export default class DOM {
         }
       }, this);
     }
-
   }
 
   each(callback) {
