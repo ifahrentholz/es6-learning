@@ -1,3 +1,4 @@
+var umd =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -52,6 +53,7 @@
 
 	var _plugin2 = __webpack_require__(5);
 
+	window.IF = _dom.$;
 	// test $ (as custom DOM module)
 	// and in the DOM module the kebab-case module here.
 	(0, _dom.$)(".test1", {
@@ -61,14 +63,6 @@
 	    }
 	  }
 	}).addClass("camelCaseTest");
-
-	(0, _dom.$)(".test2", {
-	  plugins: {
-	    plugin2: {
-	      message: "second plugin message."
-	    }
-	  }
-	}).addClass("MyCamelCaseTest_123");
 
 /***/ },
 /* 1 */
@@ -150,6 +144,8 @@
 	      this.each(function () {
 	        this.classList.add(kebabClassName);
 	      });
+
+	      return this;
 	    }
 	  }]);
 

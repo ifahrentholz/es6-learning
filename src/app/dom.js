@@ -34,6 +34,8 @@ export default class DOM {
     this.each(function() {
       this.classList.add(kebabClassName);
     });
+
+    return this;
   }
 
 }
