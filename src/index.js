@@ -1,7 +1,14 @@
-import {$} from './utils/dom';
+import {$} from './app/dom';
+import {logg} from './plugins/plugin';
 
-$(".test0").addClass("FirstCharCamelCaseTest");
-$(".test1").addClass("camelCaseTest");
-$(".test2").addClass("snake_case_test");
-$(".test3").addClass("kebab-case-test");
-$(".test4").addClass("snake_and-kebabAndCamelCaseTest");
+// test $ (as custom DOM module)
+// and in the DOM module the kebab-case module here.
+$(".test1", {
+  plugins: {
+    ifLog: {
+      message: "ifLog with custom message"
+    }
+  }
+}).addClass("camelCaseTest");
+
+

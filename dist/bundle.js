@@ -44,18 +44,48 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	var _dom = __webpack_require__(1);
+	var _dom = __webpack_require__(6);
 
-	(0, _dom.$)(".test0").addClass("FirstCharCamelCaseTest");
-	(0, _dom.$)(".test1").addClass("camelCaseTest");
-	(0, _dom.$)(".test2").addClass("snake_case_test");
-	(0, _dom.$)(".test3").addClass("kebab-case-test");
-	(0, _dom.$)(".test4").addClass("snake_and-kebabAndCamelCaseTest");
+	var _plugin = __webpack_require__(10);
+
+	// test $ (as custom DOM module)
+	// and in the DOM module the kebab-case module here.
+	(0, _dom.$)(".test1", {
+	  plugins: {
+	    ifLog: {
+	      message: "ifLog with custom message"
+	    }
+	  }
+	}).addClass("camelCaseTest");
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var kebabCase = exports.kebabCase = function kebabCase(string) {
+	  function upperToHyphenLower(match) {
+	    if (string.indexOf(match) === 0) {
+	      return match.toLowerCase();
+	    }
+	    return "-" + match.toLowerCase();
+	  }
+
+	  return string.replace(/_/g, "-").replace(/[A-Z]+/g, upperToHyphenLower).toLowerCase();
+	};
+
+/***/ },
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -72,13 +102,30 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var DOM = function () {
-	  function DOM(selector) {
+	  function DOM(selector, options) {
+	    var _this = this;
+
 	    _classCallCheck(this, DOM);
 
 	    this.elements = Array.from(document.querySelectorAll(selector));
 	    this.length = this.elements.length;
+	    this.options = options || {};
 
 	    Object.assign(this, this.elements);
+
+	    if (this.options.plugins) {
+	      (function () {
+	        var plugins = _this.options.plugins;
+
+	        Object.getOwnPropertyNames(plugins).forEach(function (name) {
+	          if (typeof this[name] === "function") {
+	            this[name](plugins[name]);
+	          } else {
+	            console.log("unable to find plugin: " + name);
+	          }
+	        }, _this);
+	      })();
+	    }
 	  }
 
 	  _createClass(DOM, [{
@@ -122,29 +169,52 @@
 	  return DOM;
 	}();
 
-	var $ = exports.$ = function $(selector) {
-	  return new DOM(selector);
+	exports.default = DOM;
+	var $ = exports.$ = function $(selector, options) {
+	  return new DOM(selector, options);
 	};
 
 /***/ },
-/* 2 */
-/***/ function(module, exports) {
+/* 7 */,
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var kebabCase = exports.kebabCase = function kebabCase(string) {
-	  function upperToHyphenLower(match) {
-	    if (string.indexOf(match) === 0) {
-	      return match.toLowerCase();
-	    }
-	    return "-" + match.toLowerCase();
-	  }
 
-	  return string.replace(/_/g, "-").replace(/[A-Z]+/g, upperToHyphenLower).toLowerCase();
+	var _dom = __webpack_require__(6);
+
+	var _dom2 = _interopRequireDefault(_dom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var plugin = function plugin(name, init) {
+	  _dom2.default.prototype[name] = init;
 	};
+
+	exports.default = plugin;
+
+/***/ },
+/* 9 */,
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _pluginRegister = __webpack_require__(8);
+
+	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ifLog(msg) {
+	  console.log(msg || "no msg provided");
+	}
+
+	(0, _pluginRegister2.default)("ifLog", ifLog);
 
 /***/ }
 /******/ ]);
