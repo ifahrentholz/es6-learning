@@ -1,5 +1,6 @@
 // http://www.ericponto.com/blog/2014/10/05/es6-dom-library/
 import { kebabCase } from "./../utils/kebab-case";
+import pluginRegister from "../utils/pluginRegister";
 
 export default class DOM {
   constructor(selector, options) {
@@ -39,6 +40,9 @@ export default class DOM {
   }
 
 }
+
+DOM.prototype.pluginRegister = pluginRegister;
+
 
 
 export var $ = (selector, options) => new DOM(selector, options);

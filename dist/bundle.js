@@ -49,7 +49,7 @@ var umd =
 
 	var _dom = __webpack_require__(1);
 
-	var _plugin = __webpack_require__(3);
+	var _plugin = __webpack_require__(4);
 
 	var _plugin2 = __webpack_require__(5);
 
@@ -78,6 +78,12 @@ var umd =
 	exports.$ = undefined;
 
 	var _kebabCase = __webpack_require__(2);
+
+	var _pluginRegister = __webpack_require__(3);
+
+	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -153,6 +159,9 @@ var umd =
 	}();
 
 	exports.default = DOM;
+
+	DOM.prototype.pluginRegister = _pluginRegister2.default;
+
 	var $ = exports.$ = function $(selector, options) {
 	  return new DOM(selector, options);
 	};
@@ -181,30 +190,6 @@ var umd =
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.plugin1 = plugin1;
-
-	var _pluginRegister = __webpack_require__(4);
-
-	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function plugin1(options) {
-	  console.log(this);
-	  console.log(options.message || "no msg provided");
-	}
-
-	(0, _pluginRegister2.default)("plugin1", plugin1);
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -224,6 +209,30 @@ var umd =
 	exports.default = pluginRegister;
 
 /***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.plugin1 = plugin1;
+
+	var _pluginRegister = __webpack_require__(3);
+
+	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function plugin1(options) {
+	  console.log(this);
+	  console.log(options.message || "no msg provided");
+	}
+
+	(0, _pluginRegister2.default)("plugin1", plugin1);
+
+/***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -234,7 +243,7 @@ var umd =
 	});
 	exports.plugin2 = plugin2;
 
-	var _pluginRegister = __webpack_require__(4);
+	var _pluginRegister = __webpack_require__(3);
 
 	var _pluginRegister2 = _interopRequireDefault(_pluginRegister);
 
