@@ -3,6 +3,6 @@
 
 
 ## Open topics
-- [ ] Build a app with the ability to be extended with custom plugins
+- [x] Build a app with the ability to be extended with custom plugins
 - [ ] Build a class structure with extends
 - [ ] extend this topic list :)
